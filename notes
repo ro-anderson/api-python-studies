@@ -1,0 +1,26 @@
+Going to a site does a GET request
+normally, returns HTML
+
+REST API?
+
+who a wev sever responds to your requests
+
+ITEN RESOURCE
+GET /item/chair
+POST /item/chair
+PUT /item/chair
+DELETE /item/chair
+
+ItemList resources
+GET /items
+
+STATELESS
+
+- another key feature is that rest is supposed to be 
+stateless
+
+this means one request cannot depend of any other requests
+the server knows about the current request, and not any
+previous request.
+
+
