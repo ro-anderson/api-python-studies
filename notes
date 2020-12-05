@@ -23,4 +23,15 @@ this means one request cannot depend of any other requests
 the server knows about the current request, and not any
 previous request.
 
+ser environment:
+
+pip install virtualenv
+
+virtualenv venv --python=python3.8
+
+source venv/bin/activate
+
+deactivate
+
+
 
