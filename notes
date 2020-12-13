@@ -33,5 +33,11 @@ source venv/bin/activate
 
 deactivate
 
+flask_restful.Resource
 
+every class must be a Resource 
+
+API Design
+
+help to undestand what is necessary or not.
 
