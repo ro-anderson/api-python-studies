@@ -1,6 +1,7 @@
 from flask_restful import Resource, reqparse
 import sqlite3
 
+
 class User:
     def __init__(self, _id, username, password):
         self.id = _id
@@ -14,14 +15,14 @@ class User:
         '''
 
         connection = sqlite3.connect('data.db')
-        cursor = connection.cursor() 
+        cursor = connection.cursor()
         query = "SELECT * FROM users WHERE username=?"
-        result = cursor.execute(query,(username,))
+        result = cursor.execute(query, (username,))
         row = result.fetchone()
 
         if row:
             #user = cls(row[0], row[1], row[2])
-            user = cls(*row) # *row = set of positional args
+            user = cls(*row)  # *row = set of positional args
 
         else:
             user = None
@@ -35,14 +36,14 @@ class User:
         by _id retrieve User.
         '''
         connection = sqlite3.connect('data.db')
-        cursor = connection.cursor() 
+        cursor = connection.cursor()
         query = "SELECT * FROM users WHERE id=?"
-        result = cursor.execute(query,(_id,))
+        result = cursor.execute(query, (_id,))
         row = result.fetchone()
 
         if row:
             #user = cls(row[0], row[1], row[2])
-            user = cls(*row) # *row = set of positional args
+            user = cls(*row)  # *row = set of positional args
 
         else:
             row = None
@@ -50,18 +51,19 @@ class User:
         connection.close()
         return user
 
+
 class UserRegister(Resource):
 
     parser = reqparse.RequestParser()
     parser.add_argument('username',
-            type=str,
-            required=True,
-            help="this fild cannot be blank.")
+                        type=str,
+                        required=True,
+                        help="this fild cannot be blank.")
 
     parser.add_argument('password',
-            type=str,
-            required=True,
-            help="this fild cannot be blank.")
+                        type=str,
+                        required=True,
+                        help="this fild cannot be blank.")
 
     def post(self):
 
@@ -69,9 +71,9 @@ class UserRegister(Resource):
         connection = sqlite3.connect('data.db')
         cursor = connection.cursor()
         query = "INSERT INTO users VALUES (NULL, ?, ?)"
-        cursor.execute(query, (data['username'],data['password']))
-        
+        cursor.execute(query, (data['username'], data['password']))
+
         connection.commit()
         connection.close()
 
-        return {"message":"User created succesfully."}, 201
+        return {"message": "User created succesfully."}, 201

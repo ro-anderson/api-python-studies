@@ -10,4 +10,4 @@ def authenticate(username, password):
 
 def identify(payload):
     user_id = payload['identity']
-    return User.find_by_id(user_id) 
+    return User.find_by_id(user_id)
