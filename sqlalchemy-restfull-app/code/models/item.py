@@ -1,5 +1,3 @@
-
-import sqlite3
 from db import db
 #from flask_restful import Resource, reqparse
 #from flask_jwt import jwt_required
@@ -14,9 +12,13 @@ class ItemModel(db.Model):
     name = db.Column(db.String(80))
     price = db.Column(db.Float(precision=2))
 
-    def __init__(self, name, price):
+    store_id = db.Column(db.Integer, db.ForeignKey('store.id'))
+    store = db.relationship('StoreModel')
+
+    def __init__(self, name, price, store_id):
         self.name = name
         self.price = price
+        self.store_id = store_id
 
     def json(self):
         return {"name": self.name, "price": self.price}
